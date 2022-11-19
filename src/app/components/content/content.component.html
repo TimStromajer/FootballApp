@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Nogometni rezultati</h1>
+
+    <br>
+
+    <h3>Lestvica</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ime</th>
+                <th scope="col">Točke</th>
+                <th scope="col">Goli</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of playersInfo; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                    {{ player.name }}
+                </td>
+                <td>
+                    {{ player.totalScore }}
+                </td>
+                <td>
+                    {{ player.totalGoals }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <h3>Pretekle tekme</h3>
+    <ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1">
+        <ngb-panel *ngFor="let match of fd">
+            <ng-template ngbPanelHeader>
+                <button ngbPanelToggle class="accordion-button">
+
+                    <div class="match-date">{{match.date}}</div>
+
+                    <div class="vr"></div>
+                    <div class="match-team1">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
+
+                    <div class="match-score">{{match.finalScore}}</div>
+
+                    <div class="match-team2">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
+                    <div class="vr vr-last"></div>
+
+                </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div *ngFor="let game of match.games; index as i; let l = count">
+                    Rezultat {{i + 1}}. igre: <b class="game-result">{{game.team1Score}}:{{game.team2Score}}</b>
+                    <div>Zadetki: </div>
+                    <!-- <div class="game-scores">{{match.team1[0]}} - {{game.scoresTeam1[0]}}	{{match.team1[1]}} - {{game.scoresTeam1[1]}},  {{match.team1[2]}} - {{game.scoresTeam1[2]}}</div>
+                    <div class="game-scores">{{match.team2[0]}} - {{game.scoresTeam2[0]}}	{{match.team2[1]}} - {{game.scoresTeam2[1]}},  {{match.team2[2]}} - {{game.scoresTeam2[2]}}</div> -->
+
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[0]}} - {{game.scoresTeam1[0]}}</li>
+                        <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[1]}} - {{game.scoresTeam1[1]}}</li>
+                        <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[2]}} - {{game.scoresTeam1[2]}}</li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item" [ngClass]="game.team1Score > game.team2Score ? 'game-lost' : 'game-won'">{{match.team2[0]}} - {{game.scoresTeam2[0]}}</li>
+                        <li class="list-group-item" [ngClass]="game.team1Score > game.team2Score ? 'game-lost' : 'game-won'">{{match.team2[1]}} - {{game.scoresTeam2[1]}}</li>
+                        <li class="list-group-item" [ngClass]="game.team1Score > game.team2Score ? 'game-lost' : 'game-won'">{{match.team2[2]}} - {{game.scoresTeam2[2]}}</li>
+                    </ul>
+                    <hr *ngIf="i < l - 1"/>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>
+
+
