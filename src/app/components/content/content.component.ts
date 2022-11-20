@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { footballData } from 'src/app/data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -13,7 +14,7 @@ export class ContentComponent implements OnInit {
   playersInfo: Array<playerInfo> = new Array;
   players: Array<string> = new Array;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
     // create players
@@ -61,6 +62,10 @@ export class ContentComponent implements OnInit {
       else if (a.totalGoals > b.totalGoals) return -1;
       else return 1;
     })
+  }
+
+  redirectChat() {
+    this.router.navigate(["/chat"])
   }
 
 }

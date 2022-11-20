@@ -1,0 +1,4 @@
+[build]
+  publish = "dist/football-app"
+  command = "ng build"
+  functions = "./functions"

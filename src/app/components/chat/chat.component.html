@@ -1,0 +1,13 @@
+<div class="container">
+
+    <div *ngFor="let msg of allMsgs">
+        <label>{{msg.username}} - {{msg.time}}</label>
+        <p>{{msg.text}}</p>
+    </div>
+
+    <form>
+        <textarea #msgTextArea class="form-control"></textarea>
+        <button type="button" (click)="postMsg(msgTextArea.value)">Objavi</button>
+    </form>
+
+</div>

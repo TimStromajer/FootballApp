@@ -53,9 +53,6 @@
                 <div *ngFor="let game of match.games; index as i; let l = count">
                     Rezultat {{i + 1}}. igre: <b class="game-result">{{game.team1Score}}:{{game.team2Score}}</b>
                     <div>Zadetki: </div>
-                    <!-- <div class="game-scores">{{match.team1[0]}} - {{game.scoresTeam1[0]}}	{{match.team1[1]}} - {{game.scoresTeam1[1]}},  {{match.team1[2]}} - {{game.scoresTeam1[2]}}</div>
-                    <div class="game-scores">{{match.team2[0]}} - {{game.scoresTeam2[0]}}	{{match.team2[1]}} - {{game.scoresTeam2[1]}},  {{match.team2[2]}} - {{game.scoresTeam2[2]}}</div> -->
-
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[0]}} - {{game.scoresTeam1[0]}}</li>
                         <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[1]}} - {{game.scoresTeam1[1]}}</li>
@@ -72,5 +69,3 @@
         </ngb-panel>
     </ngb-accordion>
 </div>
-
-
