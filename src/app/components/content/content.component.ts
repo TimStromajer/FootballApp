@@ -19,39 +19,59 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
     // create players
     this.fd.forEach(match => {
-      match.team1.forEach(pl => {
-        if (!this.players.includes(pl)) {
-          this.players.push(pl)
-          this.playersInfo.push(new playerInfo(pl))
-        }
-      })
-      match.team2.forEach(pl => {
-        if (!this.players.includes(pl)) {
-          this.players.push(pl)
-          this.playersInfo.push(new playerInfo(pl))
-        }
-      })
+      if (match.team1) {
+        match.team1.forEach(pl => {
+          if (!this.players.includes(pl)) {
+            this.players.push(pl)
+            this.playersInfo.push(new playerInfo(pl))
+          }
+        })
+      }
+      if (match.team2) {
+        match.team2.forEach(pl => {
+          if (!this.players.includes(pl)) {
+            this.players.push(pl)
+            this.playersInfo.push(new playerInfo(pl))
+          }
+        })
+      }
+      if (match.present) {
+        match.present.forEach(pl => {
+          if (!this.players.includes(pl)) {
+            this.players.push(pl)
+            this.playersInfo.push(new playerInfo(pl))
+          }
+        })
+      }
     });
 
     // give players data
     this.fd.forEach(match => {
       this.playersInfo.forEach(pl => {
-        let team: any = null;
-        let index: any = null;
-        
-        if (match.team1.includes(pl.name)) {
-          pl.totalScore += 3;
-          team = 1
-          index = match.team1.indexOf(pl.name)
-        } else if (match.team2.includes(pl.name)) {
-          pl.totalScore += 1;
-          team = 2
-          index = match.team2.indexOf(pl.name)
+        if (match.team1) {
+          let team: any = null;
+          let index: any = null;
+          
+          if (match.team1.includes(pl.name)) {
+            pl.totalScore += 3;
+            team = 1
+            index = match.team1.indexOf(pl.name)
+          } else if (match.team2.includes(pl.name)) {
+            pl.totalScore += 1;
+            team = 2
+            index = match.team2.indexOf(pl.name)
+          }
+          match.games.forEach(game => {
+            if (team == 1) pl.totalGoals += game.scoresTeam1[index]
+            else if (team == 2) pl.totalGoals += game.scoresTeam2[index]
+          })
         }
-        match.games.forEach(game => {
-          if (team == 1) pl.totalGoals += game.scoresTeam1[index]
-          else if (team == 2) pl.totalGoals += game.scoresTeam2[index]
-        })
+        else if (match.present) {
+          if (match.present.includes(pl.name)) {
+            pl.totalScore += 1;
+          }
+        }
+
       })
     });
 

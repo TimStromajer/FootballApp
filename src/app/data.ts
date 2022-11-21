@@ -1,6 +1,11 @@
 export let footballData = 
 [{
+	"date": "21.11.2022",
+	"mode": "friend",
+	"present": ["Gregor", "MartinŽ", "Matic", "Tim", "Gašper", "Svit", "Tjaš"]
+}, {
 	"date": "14.11.2022",
+	"mode": "comp",
 	"team1": ["Gregor", "MartinN", "Tim"],
 	"team2": ["MartinŽ", "Matic", "Rok"],
 	"finalScore": "4:0",

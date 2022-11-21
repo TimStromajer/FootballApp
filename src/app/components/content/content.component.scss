@@ -2,6 +2,7 @@ $red-lost-bg: rgb(255, 214, 214);
 $red-lost: #ff1a1a;
 $green-win-bg: rgb(211, 255, 211);
 $green-win: #00b300;
+$yellow-friendly: #9c9a00;
 
 .match-date {
     margin-right: 0.5rem;
@@ -50,4 +51,10 @@ $green-win: #00b300;
 
 .game-won {
     background-color: $green-win-bg;
+}
+
+.match-present {
+    color: $yellow-friendly;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
