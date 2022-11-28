@@ -1,0 +1,18 @@
+.register-form {
+    min-width: 500px;
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 500px) {
+    .register-form {
+      min-width: 90%;
+    }
+}
+
+.form-label {
+    font-size: 1.5rem
+}

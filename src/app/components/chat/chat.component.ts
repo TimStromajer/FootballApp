@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DbConnectService } from 'src/app/services/db-connect.service';
+import { DbConnectService } from 'src/app/services/DB/db-connect.service';
 
 @Component({
   selector: 'app-chat',

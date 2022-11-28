@@ -1,0 +1,49 @@
+<div class="container">
+    <form class="register-form" role="form" (ngSubmit)="register()">
+        <div *ngIf="!user">
+            <div class="form-group">
+                <label class="form-label" for="exampleInputEmail1">Vnesite kodo za registracijo</label>
+                <input type="text" #registrationCode class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Koda" [disabled]="user">
+            </div>
+            <button type="button" class="btn btn-primary" (click)="registrationCodeChange(registrationCode.value)" [disabled]="user">Preveri</button>
+
+            <div *ngIf="errMsg">{{errMsg}}</div>
+        </div>
+
+        <div *ngIf="user">
+            <div class="info">Dobrodošli <b>{{user}}</b>, prosim nadaljujte z registracijo.</div>
+            <br>
+            <div class="form-group">
+                <label class="form-label" for="password">Geslo</label>
+                <input #password type="password" class="form-control" id="password" name="password" placeholder="Geslo" >
+
+                <label class="form-label" for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="invalidCheck1" value="" required>
+                  <label class="form-check-label" for="invalidCheck1">
+                    Strinjam se, da se moji podatki (razen gesla) lahko uporabijo v katerekoli namene, ter se z njimi lahko prosto trguje.
+                  </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="invalidCheck2" value="" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                      Strinjam se s splošnimi pogoji financiranja avtorja te spletne strani.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="invalidCheck3" value="" required>
+                    <label class="form-check-label" for="invalidCheck3">
+                      Strinjam se, da za varnost na nogometu odgovarjam sam, ter da se v primeru smrti moje posmrtne ostanke v skladu s pravili ločevanja odpadkov odvrže med biološke odpadke.
+                    </label>
+                </div>
+              </div>
+
+            <button type="submit" class="btn btn-primary">Registracija</button>
+        </div>
+    </form>
+
+</div>
