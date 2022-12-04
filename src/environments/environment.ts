@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  FUNCTIONS_URL: "http://localhost:9999",
-  SECRET: process.env["SECRET"]
+  FUNCTIONS_URL: "http://localhost:9999"
 };
 
 /*
