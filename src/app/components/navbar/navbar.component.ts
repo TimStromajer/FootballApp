@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     console.log("on init")
     this.router.events.subscribe(event => {
+      console.log("router event " + event.constructor.name)
       if (event.constructor.name === "NavigationEnd") {
         console.log("router event NavigationEnd")
         this.userManagerService.getUser()
@@ -24,6 +25,11 @@ export class NavbarComponent implements OnInit {
             this.username = user.username
           })
       }
+    })
+
+    this.userManagerService.getUser()
+      .subscribe(user => {
+        this.username = user.username
     })
   }
 
