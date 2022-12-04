@@ -3,6 +3,7 @@ const { MongoClient } = require("mongodb");
 var CryptoJS = require("crypto-js");
 const uri = "mongodb+srv://slotim:geslo123@footballappcluster.fcikhci.mongodb.net/?retryWrites=true&w=majority";
 const mongoClient = new MongoClient(uri);
+require('dotenv').config()
 
 const clientPromise = mongoClient.connect();
 

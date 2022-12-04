@@ -1,4 +1,5 @@
 const { sign, verify } = require("jsonwebtoken")
+require('dotenv').config()
 
 const handler = async (event) => {
     // GET
@@ -6,6 +7,8 @@ const handler = async (event) => {
     if (event.httpMethod == "GET") {
       token = event.headers.token.split("bearer=")[1]
       try {
+        console.log(token)
+        console.log(secret)
         data = verify(token, secret)
         return {
           statusCode: 200,
