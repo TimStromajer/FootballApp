@@ -36,8 +36,8 @@ const handler = async (event) => {
         }
       }
       try {
-        registerCodesDB.updateOne({_id: codeUser._id}, { $set: { registered: true }})
-        usersDB.insertOne({email: reqData.email, password: encriptedPasswd, username: reqData.username, code: reqData.code})
+        await registerCodesDB.updateOne({_id: codeUser._id}, { $set: { registered: true }})
+        await usersDB.insertOne({email: reqData.email, password: encriptedPasswd, username: reqData.username, code: reqData.code})
 
         delete reqData['code']
         var token = await sign(reqData, secret);
