@@ -2,7 +2,7 @@
     min-width: 500px;
     position: absolute;
     text-align: center;
-    top: 30%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -15,4 +15,29 @@
 
 .form-label {
     font-size: 1.5rem
+}
+
+.err-msg {
+    color: red;
+    font-size: small;
+}
+
+.btn-checkcode {
+    margin-top: 0.3rem;
+}
+
+.check-label {
+    font-size: 0.4rem;
+    text-align: left !important;
+    display: flex;
+}
+
+.form-check-input[type=checkbox] {
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 0.25em;
+}
+
+.check-group {
+    margin-top: 1rem;
 }

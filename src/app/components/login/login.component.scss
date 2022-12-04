@@ -7,8 +7,14 @@
     transform: translate(-50%, -50%);
     font-size: 1.5rem
   }
+  
   @media (max-width: 500px) {
     .login-form {
       min-width: 90%;
     }
   }
+
+.err-msg {
+    color: red;
+    font-size: small;
+}

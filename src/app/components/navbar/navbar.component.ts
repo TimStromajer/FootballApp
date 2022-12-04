@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserManagerService } from 'src/app/services/User/user-manager.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   collapsed = true;
+  username: String = ""
 
-  constructor() { }
+  constructor(private userManagerService: UserManagerService, private router: Router) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event.constructor.name === "NavigationEnd") {
+        this.userManagerService.getUser()
+          .subscribe(user => this.username = user.username)
+      }
+    })
   }
 
   toggleCollapsed(): void {

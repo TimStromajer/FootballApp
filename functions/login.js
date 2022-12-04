@@ -12,14 +12,19 @@ const handler = async (event) => {
     if (event.httpMethod == "POST") {
       let reqData = JSON.parse(event.body)
       const database = (await clientPromise).db("userDB");
-      const registerCodesDB = database.collection("registerCodes");
       const usersDB = database.collection("users");
-      const cursor = await registerCodesDB.find({ code: reqData.code })
-      var codeUsers = await cursor.toArray();
-      var codeUser = codeUsers[0]
-      encriptedPasswd = CryptoJS.AES.encrypt(reqData.password, secret).toString()
+      const cursor = await usersDB.find({ username: reqData.username })
+      var users = await cursor.toArray();
+      var user = users[0]
 
-      if (!codeUser || codeUser.registered == true) {
+      if (user) {
+        bytes = CryptoJS.AES.decrypt(user.password, secret)
+        var decriptedPasswd = bytes.toString(CryptoJS.enc.Utf8)
+      }
+
+      if (user && decriptedPasswd === reqData.password) {
+        cookieData = {email: user.email, username: user.username, code: user.code}
+        var token = await sign(reqData, secret);
         try {
           return {
               statusCode: 200,
@@ -29,31 +34,28 @@ const handler = async (event) => {
                   "Access-Control-Allow-Methods": "*"
                   
               },
-              body: JSON.stringify({jwt: null})
+              body: JSON.stringify({jwt: token})
           }
         } catch (error) {
             return { statusCode: 501, body: error.toString() }
         }
+      } else {
+        try {
+            return {
+              statusCode: 200,
+              headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Methods": "*"
+                
+              },
+              body: JSON.stringify({jwt: null})
+            }
+          } catch (error) {
+              return { statusCode: 502, body: error.toString() }
+          }
       }
-      try {
-        registerCodesDB.updateOne({_id: codeUser._id}, { $set: { registered: true }})
-        usersDB.insertOne({email: reqData.email, password: encriptedPasswd, username: reqData.username, code: reqData.code})
-
-        delete reqData['code']
-        var token = await sign(reqData, secret);
-        return {
-          statusCode: 200,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Allow-Methods": "*"
-            
-          },
-          body: JSON.stringify({jwt: token})
-        }
-      } catch (error) {
-          return { statusCode: 502, body: error.toString() }
-      }
+    // REST
     } else {
       return {
         statusCode: 200,

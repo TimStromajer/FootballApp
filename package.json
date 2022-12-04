@@ -23,6 +23,8 @@
     "@popperjs/core": "^2.10.2",
     "@types/node": "^14.18.33",
     "bootstrap": "^5.2.0",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.12.0",
     "rxjs": "~7.5.0",

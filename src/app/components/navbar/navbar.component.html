@@ -17,13 +17,16 @@
             </ul>
         </div>
 
-        <!-- <div class="navbar-collapse collapse navbar-right" id="navbarNav" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+        <div class="navbar-collapse collapse navbar-right" id="navbarNav" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Prijava</a>
+                    <a *ngIf="!username" class="nav-link" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Prijava</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="username" class="nav-link" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">{{username}}</a>
                 </li>
             </ul>
-        </div> -->
+        </div>
     </div>
 </nav>
 

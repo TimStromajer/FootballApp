@@ -5,9 +5,10 @@
                 <label class="form-label" for="exampleInputEmail1">Vnesite kodo za registracijo</label>
                 <input type="text" #registrationCode class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Koda" [disabled]="user">
             </div>
-            <button type="button" class="btn btn-primary" (click)="registrationCodeChange(registrationCode.value)" [disabled]="user">Preveri</button>
 
-            <div *ngIf="errMsg">{{errMsg}}</div>
+            <div *ngIf="errMsg" class="err-msg">{{errMsg}}</div>
+
+            <button type="button" class="btn btn-primary btn-checkcode" (click)="registrationCodeChange(registrationCode.value)" [disabled]="user">Preveri</button>
         </div>
 
         <div *ngIf="user">
@@ -15,31 +16,32 @@
             <br>
             <div class="form-group">
                 <label class="form-label" for="password">Geslo</label>
-                <input #password type="password" class="form-control" id="password" name="password" placeholder="Geslo" >
+                <input type="password" class="form-control" id="password" name="password" placeholder="Geslo" [(ngModel)]="password">
 
                 <label class="form-label" for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="email">
             </div>
 
-            <div class="form-group">
+            <div class="form-group check-group">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="invalidCheck1" value="" required>
-                  <label class="form-check-label" for="invalidCheck1">
+                  <input class="form-check-input" type="checkbox" id="check1" value="" name="check1" [(ngModel)]="check1" required>
+                  <label class="form-check-label check-label" for="check1">
                     Strinjam se, da se moji podatki (razen gesla) lahko uporabijo v katerekoli namene, ter se z njimi lahko prosto trguje.
                   </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="invalidCheck2" value="" required>
-                    <label class="form-check-label" for="invalidCheck2">
+                    <input class="form-check-input" type="checkbox" id="check2" value="" name="check2" [(ngModel)]="check2" required>
+                    <label class="check-label" for="check2">
                       Strinjam se s splošnimi pogoji financiranja avtorja te spletne strani.
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="invalidCheck3" value="" required>
-                    <label class="form-check-label" for="invalidCheck3">
+                    <input class="form-check-input" type="checkbox" id="check3" value="" name="check3" [(ngModel)]="check3" required>
+                    <label class="form-check-label check-label" for="check3">
                       Strinjam se, da za varnost na nogometu odgovarjam sam, ter da se v primeru smrti moje posmrtne ostanke v skladu s pravili ločevanja odpadkov odvrže med biološke odpadke.
                     </label>
                 </div>
+                <div *ngIf="errMsgCheck" class="err-msg">{{errMsgCheck}}</div>
               </div>
 
             <button type="submit" class="btn btn-primary">Registracija</button>

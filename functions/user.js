@@ -1,36 +1,32 @@
-import * as jwt from 'jsonwebtoken';
+const { sign, verify } = require("jsonwebtoken")
 
 const handler = async (event) => {
-    // GET MSGS
+    // GET
+    const secret = process.env.SECRET
     if (event.httpMethod == "GET") {
+      token = event.headers.token.split("bearer=")[1]
       try {
+        data = verify(token, secret)
         return {
           statusCode: 200,
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Methods": "*"
+            
           },
-          body: JSON.stringify(msgs)
-        }
-      } catch (err) {
-        console.log(err)
-      }
-    // POST MSG
-    } else if (event.httpMethod == "POST") {
-      let reqData = JSON.parse(event.body)
-      try {
-        return {
-          statusCode: 200,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Allow-Methods": "*"
-          },
-          body: JSON.stringify({message: "added :)"})
+          body: JSON.stringify({username: data.username})
         }
       } catch (error) {
-          return { statusCode: 500, body: error.toString() }
+          return { 
+            statusCode: 200,           
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Headers": "*",
+              "Access-Control-Allow-Methods": "*"
+            },
+            body: JSON.stringify({username: null})
+          }
       }
     } else {
       return {

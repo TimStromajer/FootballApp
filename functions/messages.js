@@ -8,7 +8,7 @@ const handler = async (event) => {
     // GET MSGS
     if (event.httpMethod == "GET") {
       try {
-        const database = (await clientPromise).db("MsgDatabase");
+        const database = (await clientPromise).db("MessagesDB");
         const collection = database.collection("messages");
         const cursor = await collection.find()
         var msgs = await cursor.toArray();
