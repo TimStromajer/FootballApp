@@ -32,6 +32,7 @@ export class UserManagerService {
   }
 
   getUser() {
+    console.log("get user")
     let reqHeaders = new HttpHeaders({"token": this.cookieManagerService.getCookie(), "Accept": "*/*"})
     return this.http.get<any>(this.uri + "/.netlify/functions/user", { headers: reqHeaders})
   }
