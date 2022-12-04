@@ -7,8 +7,6 @@ const handler = async (event) => {
     if (event.httpMethod == "GET") {
       token = event.headers.token.split("bearer=")[1]
       try {
-        console.log(token)
-        console.log(secret)
         data = verify(token, secret)
         return {
           statusCode: 200,
@@ -28,7 +26,7 @@ const handler = async (event) => {
               "Access-Control-Allow-Headers": "*",
               "Access-Control-Allow-Methods": "*"
             },
-            body: JSON.stringify({username: null})
+            body: error.toString()
           }
       }
     } else {
