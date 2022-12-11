@@ -26,20 +26,8 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="check1" value="" name="check1" [(ngModel)]="check1" required>
                   <label class="form-check-label check-label" for="check1">
-                    Strinjam se, da se moji podatki (razen gesla) lahko uporabijo v katerekoli namene, ter se z njimi lahko prosto trguje.
+                    Strinjam se z vsemi pogoji avtorja te spletne strani.
                   </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="check2" value="" name="check2" [(ngModel)]="check2" required>
-                    <label class="check-label" for="check2">
-                      Strinjam se s splošnimi pogoji financiranja avtorja te spletne strani.
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="check3" value="" name="check3" [(ngModel)]="check3" required>
-                    <label class="form-check-label check-label" for="check3">
-                      Strinjam se, da za varnost na nogometu odgovarjam sam, ter da se v primeru smrti moje posmrtne ostanke v skladu s pravili ločevanja odpadkov odvrže med biološke odpadke.
-                    </label>
                 </div>
                 <div *ngIf="errMsgCheck" class="err-msg">{{errMsgCheck}}</div>
               </div>

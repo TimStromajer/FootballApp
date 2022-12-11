@@ -26,7 +26,7 @@ const handler = async (event) => {
               "Access-Control-Allow-Headers": "*",
               "Access-Control-Allow-Methods": "*"
             },
-            body: error.toString()
+            body: JSON.stringify({username: null})
           }
       }
     } else {

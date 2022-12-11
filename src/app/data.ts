@@ -4,7 +4,8 @@ export let footballData =
 	"mode": "comp",
 	"team1": ["Gregor", "MartinN", "MartinŽ"],
 	"team2": ["Tim", "Matic", "Rok"],
-	"finalScore": "6:0",
+	"team1Score": "6",
+	"team2Score": "0",
 	"games": [{
 			"team1Score": "5",
 			"team2Score": "0",
@@ -47,7 +48,8 @@ export let footballData =
 	"mode": "comp",
 	"team1": ["Tim", "Matic", "MartinŽ"],
 	"team2": ["Gregor", "Slavko", "Rok"],
-	"finalScore": "3:2",
+	"team1Score": "3",
+	"team2Score": "2",
 	"games": [{
 			"team1Score": "4",
 			"team2Score": "5",
@@ -88,7 +90,8 @@ export let footballData =
 	"mode": "comp",
 	"team1": ["Gregor", "MartinN", "Tim"],
 	"team2": ["MartinŽ", "Matic", "Rok"],
-	"finalScore": "4:0",
+	"team1Score": "4",
+	"team2Score": "0",
 	"games": [{
 			"team1Score": "5",
 			"team2Score": "3",

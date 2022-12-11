@@ -17,7 +17,7 @@
             <tr *ngFor="let player of playersInfo; index as i">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>
-                    {{ player.name }}
+                    <a class="nav-link text-primary text-decorate-underline" [routerLink]="['profile', player.name]" routerLinkActive="active" ariaCurrentWhenActive="page">{{player.name}}</a>
                 </td>
                 <td>
                     {{ player.totalScore }}
@@ -42,7 +42,7 @@
                     <div class="vr"></div>
                     <div class="match-team1">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
 
-                    <div class="match-score">{{match.finalScore}}</div>
+                    <div class="match-score">{{match.team1Score}}:{{match.team2Score}}</div>
 
                     <div class="match-team2">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
                     <div class="vr vr-last"></div>

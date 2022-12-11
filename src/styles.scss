@@ -2,3 +2,13 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    clear: both;
+    margin-bottom: 80px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}

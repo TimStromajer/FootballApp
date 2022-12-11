@@ -18,8 +18,10 @@ const handler = async (event) => {
       const cursor = await registerCodesDB.find({ code: reqData.code })
       var codeUsers = await cursor.toArray();
       var codeUser = codeUsers[0]
-      encriptedPasswd = CryptoJS.AES.encrypt(reqData.password, secret).toString()
-
+      
+      var salt = CryptoJS.enc.Base64.stringify(CryptoJS.lib.WordArray.random(16));
+      passwordHash = CryptoJS.SHA256(reqData.password + salt, secret).toString()
+      
       if (!codeUser || codeUser.registered == true) {
         try {
           return {
@@ -38,7 +40,7 @@ const handler = async (event) => {
       }
       try {
         await registerCodesDB.updateOne({_id: codeUser._id}, { $set: { registered: true }})
-        await usersDB.insertOne({email: reqData.email, password: encriptedPasswd, username: reqData.username, code: reqData.code})
+        await usersDB.insertOne({email: reqData.email, password: passwordHash, username: reqData.username, code: reqData.code, salt: salt})
 
         delete reqData['code']
         var token = await sign(reqData, secret);

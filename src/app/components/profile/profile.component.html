@@ -1,0 +1,123 @@
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+            <div class="row g-0">
+                <div class="col col-12 col-md-4">
+                    <div class="p-4">
+                        <img class="rounded-circle img-fluid w-100" [src]="profileImgSrc">
+                        <h4 class="mt-4 font-weight-bold text-center">{{username}}</h4>
+                        <p class="mt-2 text-center fst-italic">{{myBio}}</p>
+                        <div class="mb-3 text-center">
+                            <p class="fw-bold">Delež zmaganih tekem {{round(matchesWon / matchesPlayed * 100)}}%</p>
+                            <p class="fw-bold">Delež zmaganih iger {{round(gamesWon / gamesPlayed * 100)}}%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-8">
+                    <div class="pt-3">
+                        <h5 class="font-weight-bold">Aktivne skupine</h5>
+                        <hr class="w-50">
+                        <p>NK Orh</p>
+
+                        <h5 class="font-weight-bold">Dosežki</h5>
+                        <hr class="w-50">
+                        <div class="d-flex justify-content-between text-center mb-3">
+                            <div>
+                                <img *ngIf="goals < 50" class="img-fluid" src="/assets/img/bronze-cup.png" style="height: 9rem;">
+                                <img *ngIf="goals >= 50 && goals < 100" class="img-fluid" src="/assets/img/silver-cup.png" style="height: 9rem;">
+                                <img *ngIf="goals >= 100" class="img-fluid" src="/assets/img/gold-cup.png" style="height: 9rem;">
+                                <h5>Goli</h5>
+                                <div>
+                                    Naslednji dosežek
+                                    {{goals}}/<span *ngIf="goals < 50">50</span>
+                                    <span *ngIf="goals >= 50 && goals < 100">100</span>
+                                </div>
+                            </div>
+                            <div>
+                                <img *ngIf="matchesPlayed + friendlyMatchesPlayed < 5" class="img-fluid" src="/assets/img/bronze-cup.png" style="height: 9rem;">
+                                <img *ngIf="matchesPlayed + friendlyMatchesPlayed >= 5 && matchesPlayed + friendlyMatchesPlayed < 20" class="img-fluid" src="/assets/img/silver-cup.png" style="height: 9rem;">
+                                <img *ngIf="matchesPlayed + friendlyMatchesPlayed >= 20" class="img-fluid" src="/assets/img/gold-cup.png" style="height: 9rem;">
+                                <h5>Odigrane tekme</h5>
+                                <div>
+                                    Naslednji dosežek
+                                    {{matchesPlayed + friendlyMatchesPlayed}}/<span *ngIf="matchesPlayed + friendlyMatchesPlayed < 5">5</span>
+                                    <span *ngIf="matchesPlayed + friendlyMatchesPlayed >= 5 && matchesPlayed + friendlyMatchesPlayed < 20">20</span>
+                                </div>
+                            </div>
+                            <div>
+                                <img *ngIf="gamesWon < 15" class="img-fluid" src="/assets/img/bronze-cup.png" style="height: 9rem;">
+                                <img *ngIf="gamesWon >= 15 && gamesWon < 30" class="img-fluid" src="/assets/img/silver-cup.png" style="height: 9rem;">
+                                <img *ngIf="gamesWon >= 30" class="img-fluid" src="/assets/img/gold-cup.png" style="height: 9rem;">
+                                <h5>Zmagane igre</h5>
+                                <div>
+                                    Naslednji dosežek
+                                    {{gamesWon}}/<span *ngIf="gamesWon < 15">15</span>
+                                    <span *ngIf="gamesWon >= 15 && gamesWon < 30">30</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="font-weight-bold">Zadnje igre</h5>
+                        <hr class="w-50">
+                        <ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1">
+                            <ngb-panel *ngFor="let match of myMatches">
+                                <ng-template ngbPanelHeader *ngIf="match.team1">
+                                    <button ngbPanelToggle class="accordion-button" *ngIf="match.team1">
+                    
+                                        <div>{{match.date}}</div>
+                    
+                                        <div class="vr mx-2"></div>
+                                        <div class="match-team1">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
+                    
+                                        <div class="match-score mx-2">{{match.team1Score}}:{{match.team2Score}}</div>
+                    
+                                        <div class="match-team2">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
+                                        <div class="vr mx-2"></div>
+                    
+                                    </button>
+                                </ng-template>
+                                <ng-template ngbPanelContent *ngIf="match.team1">
+                                    <div *ngFor="let game of match.games; index as i; let l = count">
+                                        Rezultat {{i + 1}}. igre: <b class="game-result">{{game.team1Score}}:{{game.team2Score}}</b>
+                                        <div>Zadetki: </div>
+                                        <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[0]}} - {{game.scoresTeam1[0]}}</li>
+                                            <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[1]}} - {{game.scoresTeam1[1]}}</li>
+                                            <li class="list-group-item" [ngClass]="game.team1Score < game.team2Score ? 'game-lost' : 'game-won'">{{match.team1[2]}} - {{game.scoresTeam1[2]}}</li>
+                                        </ul>
+                                        <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item" [ngClass]="game.team1Score > game.team2Score ? 'game-lost' : 'game-won'">{{match.team2[0]}} - {{game.scoresTeam2[0]}}</li>
+                                            <li class="list-group-item" [ngClass]="game.team1Score > game.team2Score ? 'game-lost' : 'game-won'">{{match.team2[1]}} - {{game.scoresTeam2[1]}}</li>
+                                            <li class="list-group-item" [ngClass]="game.team1Score > game.team2Score ? 'game-lost' : 'game-won'">{{match.team2[2]}} - {{game.scoresTeam2[2]}}</li>
+                                        </ul>
+                                        <hr *ngIf="i < l - 1"/>
+                                    </div>
+                                </ng-template>
+                    
+                                <ng-template ngbPanelHeader *ngIf="match.present">
+                                    <button ngbPanelToggle class="accordion-button" *ngIf="match.present != undefined">
+                    
+                                        <div class="match-date">{{match.date}}</div>
+                    
+                                        <div class="vr mx-2"></div>
+                                        <div class="match-present">
+                                            <span class="inline" *ngFor="let pr of match.present; index as i; let l = count">{{pr}}<span *ngIf="i < l - 1">, </span></span>
+                                        </div>
+                                        <div class="vr mx-2"></div>
+                    
+                                    </button>
+                                </ng-template>
+                                <ng-template ngbPanelContent *ngIf="match.present">
+                                    <div>
+                                        Prijateljska tekma.
+                                    </div>
+                                </ng-template>
+                    
+                            </ngb-panel>
+                        </ngb-accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

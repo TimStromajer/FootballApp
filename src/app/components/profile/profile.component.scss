@@ -1,0 +1,43 @@
+$red-lost-bg: rgb(255, 214, 214);
+$red-lost: #ff1a1a;
+$green-win-bg: rgb(211, 255, 211);
+$green-win: #00b300;
+$yellow-friendly: #9c9a00;
+
+.match-team1 {
+    color: $green-win;
+    text-align: center;
+}
+
+.match-team2 {
+    color: $red-lost;
+    text-align: center;
+}
+
+.game-scores {
+    tab-size: 4;
+}
+
+.game-result {
+    padding-left: 0.5rem;
+}
+
+.list-group-item {
+    width:33.3%;
+}
+
+.list-group-horizontal {
+    max-width: 400px;
+}
+
+.game-lost {
+    background-color: $red-lost-bg;
+}
+
+.game-won {
+    background-color: $green-win-bg;
+}
+
+.match-present {
+    color: $yellow-friendly;
+}

@@ -19,11 +19,11 @@ const handler = async (event) => {
       var user = users[0]
 
       if (user) {
-        bytes = CryptoJS.AES.decrypt(user.password, secret)
-        var decriptedPasswd = bytes.toString(CryptoJS.enc.Utf8)
+        passwordHash = CryptoJS.SHA256(reqData.password + user.salt, secret).toString()
+        console.log(passwordHash)
       }
 
-      if (user && decriptedPasswd === reqData.password) {
+      if (user && passwordHash === user.password) {
         cookieData = {email: user.email, username: user.username, code: user.code}
         var token = await sign(reqData, secret);
         try {
