@@ -53,11 +53,19 @@ export class ContentComponent implements OnInit {
           let index: any = null;
           
           if (match.team1.includes(pl.name)) {
-            pl.totalScore += 3;
+            if (match.team1Score > match.team2Score) {
+              pl.totalScore += 3;
+            } else {
+              pl.totalScore += 1;
+            }
             team = 1
             index = match.team1.indexOf(pl.name)
           } else if (match.team2.includes(pl.name)) {
-            pl.totalScore += 1;
+            if (match.team1Score < match.team2Score) {
+              pl.totalScore += 3;
+            } else {
+              pl.totalScore += 1;
+            }
             team = 2
             index = match.team2.indexOf(pl.name)
           }

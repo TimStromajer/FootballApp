@@ -63,15 +63,15 @@
                             <ngb-panel *ngFor="let match of myMatches">
                                 <ng-template ngbPanelHeader *ngIf="match.team1">
                                     <button ngbPanelToggle class="accordion-button" *ngIf="match.team1">
-                    
-                                        <div>{{match.date}}</div>
+
+                                        <div class="match-date">{{match.date}}</div>
                     
                                         <div class="vr mx-2"></div>
-                                        <div class="match-team1">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
+                                        <div class="text-center" [ngClass]="match.team1Score < match.team2Score ? 'text-game-lost' : 'text-game-won'">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
                     
                                         <div class="match-score mx-2">{{match.team1Score}}:{{match.team2Score}}</div>
                     
-                                        <div class="match-team2">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
+                                        <div class="text-center" [ngClass]="match.team1Score > match.team2Score ? 'text-game-lost' : 'text-game-won'">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
                                         <div class="vr mx-2"></div>
                     
                                     </button>

@@ -4,31 +4,6 @@ $green-win-bg: rgb(211, 255, 211);
 $green-win: #00b300;
 $yellow-friendly: #9c9a00;
 
-.match-date {
-    margin-right: 0.5rem;
-}
-
-.match-team1 {
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-    color: $green-win;
-    text-align: center;
-}
-
-.match-score {
-    margin-right: 0.5rem;
-}
-
-.match-team2 {
-    margin-right: 0.5rem;
-    color: $red-lost;
-    text-align: center;
-}
-
-.vr-last {
-    margin-right: 1rem;
-}
-
 .game-scores {
     tab-size: 4;
 }
@@ -45,6 +20,14 @@ $yellow-friendly: #9c9a00;
     max-width: 400px;
 }
 
+.text-game-lost {
+    color: $red-lost;
+}
+
+.text-game-won {
+    color: $green-win;
+}
+
 .game-lost {
     background-color: $red-lost-bg;
 }
@@ -55,6 +38,4 @@ $yellow-friendly: #9c9a00;
 
 .match-present {
     color: $yellow-friendly;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
 }

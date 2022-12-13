@@ -39,13 +39,13 @@
 
                     <div class="match-date">{{match.date}}</div>
 
-                    <div class="vr"></div>
-                    <div class="match-team1">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
+                    <div class="vr mx-2"></div>
+                    <div class="text-center" [ngClass]="match.team1Score < match.team2Score ? 'text-game-lost' : 'text-game-won'">{{match.team1[0]}}, {{match.team1[1]}}, {{match.team1[2]}}</div>
 
-                    <div class="match-score">{{match.team1Score}}:{{match.team2Score}}</div>
+                    <div class="match-score mx-2">{{match.team1Score}}:{{match.team2Score}}</div>
 
-                    <div class="match-team2">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
-                    <div class="vr vr-last"></div>
+                    <div class="text-center" [ngClass]="match.team1Score > match.team2Score ? 'text-game-lost' : 'text-game-won'">{{match.team2[0]}}, {{match.team2[1]}}, {{match.team2[2]}}</div>
+                    <div class="vr mx-2"></div>
 
                 </button>
             </ng-template>
@@ -72,11 +72,11 @@
 
                     <div class="match-date">{{match.date}}</div>
 
-                    <div class="vr"></div>
+                    <div class="vr mx-2"></div>
                     <div class="match-present">
                         <span class="inline" *ngFor="let pr of match.present; index as i; let l = count">{{pr}}<span *ngIf="i < l - 1">, </span></span>
                     </div>
-                    <div class="vr vr-last"></div>
+                    <div class="vr mx-2"></div>
 
                 </button>
             </ng-template>

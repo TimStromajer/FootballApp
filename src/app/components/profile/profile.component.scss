@@ -30,11 +30,19 @@ $yellow-friendly: #9c9a00;
     max-width: 400px;
 }
 
-.game-lost {
+.text-game-lost {
+    color: $red-lost;
+}
+
+.text-game-won {
+    color: $green-win;
+}
+
+.bg-game-lost {
     background-color: $red-lost-bg;
 }
 
-.game-won {
+.bg-game-won {
     background-color: $green-win-bg;
 }
 
