@@ -5,12 +5,11 @@ const uri = "mongodb+srv://slotim:geslo123@footballappcluster.fcikhci.mongodb.ne
 const mongoClient = new MongoClient(uri);
 require('dotenv').config()
 
-const clientPromise = mongoClient.connect();
-
 const handler = async (event) => {
     // POST
     const secret = process.env.SECRET
     if (event.httpMethod == "POST") {
+      const clientPromise = mongoClient.connect();
       let reqData = JSON.parse(event.body)
       const database = (await clientPromise).db("userDB");
       const registerCodesDB = database.collection("registerCodes");
@@ -36,6 +35,8 @@ const handler = async (event) => {
           }
         } catch (error) {
             return { statusCode: 501, body: error.toString() }
+        } finally {
+          (await clientPromise).close()
         }
       }
       try {
@@ -56,6 +57,8 @@ const handler = async (event) => {
         }
       } catch (error) {
           return { statusCode: 502, body: error.toString() }
+      } finally {
+        (await clientPromise).close()
       }
     } else {
       return {

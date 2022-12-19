@@ -2,11 +2,10 @@ const { MongoClient } = require("mongodb");
 const uri = "mongodb+srv://slotim:geslo123@footballappcluster.fcikhci.mongodb.net/?retryWrites=true&w=majority";
 const mongoClient = new MongoClient(uri);
 
-const clientPromise = mongoClient.connect();
-
 const handler = async (event) => {
     // GET MSGS
     if (event.httpMethod == "GET") {
+      const clientPromise = mongoClient.connect();
       try {
         const database = (await clientPromise).db("MessagesDB");
         const collection = database.collection("messages");
@@ -23,9 +22,12 @@ const handler = async (event) => {
         }
       } catch (err) {
         console.log(err)
+      } finally {
+        (await clientPromise).close()
       }
     // POST MSG
     } else if (event.httpMethod == "POST") {
+      const clientPromise = mongoClient.connect();
       let reqData = JSON.parse(event.body)
       try {
         const database = (await clientPromise).db("MsgDatabase");
@@ -48,6 +50,8 @@ const handler = async (event) => {
         }
       } catch (error) {
           return { statusCode: 500, body: error.toString() }
+      } finally {
+        (await clientPromise).close()
       }
     } else {
       return {

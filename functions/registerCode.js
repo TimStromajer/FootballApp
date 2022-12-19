@@ -3,11 +3,10 @@ const { MongoClient } = require("mongodb");
 const uri = "mongodb+srv://slotim:geslo123@footballappcluster.fcikhci.mongodb.net/?retryWrites=true&w=majority";
 const mongoClient = new MongoClient(uri);
 
-const clientPromise = mongoClient.connect();
-
 const handler = async (event) => {
     // POST
     if (event.httpMethod == "POST") {
+        const clientPromise = mongoClient.connect();
         let reqData = JSON.parse(event.body)
         const database = (await clientPromise).db("userDB");
         const collection = database.collection("registerCodes");
@@ -28,7 +27,9 @@ const handler = async (event) => {
                 }
             } catch (error) {
                 return { statusCode: 501, body: error.toString() }
-            }
+            } finally {
+                (await clientPromise).close()
+              }
         } else {
             try {
                 return {
@@ -43,7 +44,9 @@ const handler = async (event) => {
                 }
             } catch (error) {
                 return { statusCode: 501, body: error.toString() }
-            }
+            } finally {
+                (await clientPromise).close()
+              }
         }
     } else {
       return {
