@@ -71,6 +71,7 @@ export class ProfileComponent implements OnInit {
       this.myBio = "Kadar tečem, se počutim utrujeno, zato ne tečem."
     } else if (this.username === "MartinŽ") {
       this.profileImgSrc = "https://cdn-icons-png.flaticon.com/512/4137/4137036.png"
+      this.myBio = "Važn da je Matic za mano."
     } else if (this.username === "MartinN") {
       this.profileImgSrc = "/assets/img/caucasion.jpg"
       this.myBio = "Ko slišim besedo \'tekma\', sem že ves prešvican."
@@ -78,10 +79,13 @@ export class ProfileComponent implements OnInit {
       this.profileImgSrc = "/assets/img/boye.jpg"
     } else if (this.username === "Tim") {
       this.profileImgSrc = "https://img.freepik.com/premium-vector/movie-serial-animated-character-illustration-cartoon-movie-serial-icon-vector-icon-premium-vector_727315-13.jpg?w=2000"
-      this.myBio = "Zadeti gol nasprotnika je kot sprehod po gozni poti. Preprosto, sproščajoče, ter z nekaj koreninami na poti."
+      this.myBio = "Zadeti gol nasprotnika je kot sprehod po gozdni poti. Preprosto, sproščajoče, ter z nekaj koreninami na poti."
     } else if (this.username === "Gregor") {
       this.profileImgSrc = "https://us.123rf.com/450wm/moremar/moremar1801/moremar180100001/92735405-face-of-an-old-man-icon-.jpg"
+    } else if (this.username === "Filip") {
+      this.myBio = "Prišel, odigral, zgubu podplat."
     }
+    
   }
 
   round(val: number): number {
