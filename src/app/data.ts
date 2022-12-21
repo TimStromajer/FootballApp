@@ -15,13 +15,13 @@ export let footballData =
 		{
 			"team1Score": "4",
 			"team2Score": "5",
-			"scoresTeam1": [1, 3, 0],
+			"scoresTeam1": [1, 2, 1],
 			"scoresTeam2": [4, 1, 0]
 		},
 		{
 			"team1Score": "4",
 			"team2Score": "5",
-			"scoresTeam1": [2, 2, 0],
+			"scoresTeam1": [1, 2, 1],
 			"scoresTeam2": [2, 3, 0]
 		},
 		{
