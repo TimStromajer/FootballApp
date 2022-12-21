@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
     if (this.username === "Matic") {
       this.profileImgSrc = "https://cdn4.iconfinder.com/data/icons/cute-minimal-geometric-cartoon-avatars/100/b-512.png"
-      this.myBio = "Včasih preigram nasprotnika, včasih pa tudu sebe."
+      this.myBio = "Včasih preigram nasprotnika, včasih pa tudi sebe."
     } else if (this.username === "MartinŽ") {
       this.profileImgSrc = "https://cdn-icons-png.flaticon.com/512/4137/4137036.png"
       this.myBio = "Važn da je Matic za mano."
