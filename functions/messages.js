@@ -7,7 +7,7 @@ const handler = async (event) => {
     if (event.httpMethod == "GET") {
       const clientPromise = mongoClient.connect();
       try {
-        const database = (await clientPromise).db("MessagesDB");
+        const database = (await clientPromise).db("msgDB");
         const collection = database.collection("messages");
         const cursor = await collection.find()
         var msgs = await cursor.toArray();
@@ -30,11 +30,12 @@ const handler = async (event) => {
       const clientPromise = mongoClient.connect();
       let reqData = JSON.parse(event.body)
       try {
-        const database = (await clientPromise).db("MsgDatabase");
+        const database = (await clientPromise).db("msgDB");
         const collection = await database.collection("messages");
-
-        collection.insertOne({
-            username: reqData.username,
+        
+        await collection.insertOne({
+            sender: reqData.sender,
+            receiver: reqData.receiver,
             text: reqData.text,
             time: reqData.time
         })

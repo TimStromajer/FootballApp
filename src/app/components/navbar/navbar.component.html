@@ -23,7 +23,10 @@
                     <a *ngIf="!username" class="nav-link" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Prijava</a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="username" class="nav-link" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">{{username}}</a>
+                    <a *ngIf="username" class="nav-link" routerLink="/chat" routerLinkActive="active" ariaCurrentWhenActive="page">Chat</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="username" class="nav-link" routerLink="/profile/{{username}}" routerLinkActive="active" ariaCurrentWhenActive="page">{{username}}</a>
                 </li>
             </ul>
         </div>

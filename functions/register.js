@@ -12,9 +12,8 @@ const handler = async (event) => {
       const clientPromise = mongoClient.connect();
       let reqData = JSON.parse(event.body)
       const database = (await clientPromise).db("userDB");
-      const registerCodesDB = database.collection("registerCodes");
       const usersDB = database.collection("users");
-      const cursor = await registerCodesDB.find({ code: reqData.code })
+      const cursor = await usersDB.find({ code: reqData.code })
       var codeUsers = await cursor.toArray();
       var codeUser = codeUsers[0]
       
@@ -40,8 +39,7 @@ const handler = async (event) => {
         }
       }
       try {
-        await registerCodesDB.updateOne({_id: codeUser._id}, { $set: { registered: true }})
-        await usersDB.insertOne({email: reqData.email, password: passwordHash, username: reqData.username, code: reqData.code, salt: salt})
+        await usersDB.updateOne({_id: codeUser._id}, { $set: { registered: true, email: reqData.email, password: passwordHash, salt: salt }})
 
         delete reqData['code']
         var token = await sign(reqData, secret);

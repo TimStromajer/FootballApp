@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
     else if (!this.validateEmail(this.email)) {
       this.errMsgCheck = "Email ni v pravilnem formatu."
     }
-    else if (!this.check1 || !this.check2 || !this.check3) {
+    else if (!this.check1) {
       this.errMsgCheck = "Za nadaljevanje registracije se morate strinjati z vsemi pogoji"
     }
     else {

@@ -9,7 +9,7 @@ const handler = async (event) => {
         const clientPromise = mongoClient.connect();
         let reqData = JSON.parse(event.body)
         const database = (await clientPromise).db("userDB");
-        const collection = database.collection("registerCodes");
+        const collection = database.collection("users");
         const cursor = await collection.find({ code: reqData.code })
         var users = await cursor.toArray();
         var user = users[0]

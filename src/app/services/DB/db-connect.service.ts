@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { mergeMap, Observable, timer } from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -16,8 +16,12 @@ export class DbConnectService {
     return this.http.get<any>(this.uri + "/.netlify/functions/messages")
   }
 
-  postmsg(text: any, username: any): Observable<any> {
-    let reqBody = { "username": username, "text": text, time: "time" }
+  getAllMsgsRepeat(): Observable<any> {
+    return timer(0, 10 * 1000).pipe(mergeMap(_ => this.getAllMsgs()))
+  }
+
+  postmsg(text: any, sender: any, receiver: any, time: any): Observable<any> {
+    let reqBody = { "sender": sender, "receiver": receiver, "text": text, "time": time }
     let reqHeaders = new HttpHeaders({"Content-Type": "application/json"})
     return this.http.post<any>(this.uri + "/.netlify/functions/messages", reqBody, { headers: reqHeaders})
   }
