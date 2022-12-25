@@ -23,7 +23,6 @@ export class ChatComponent implements OnInit {
       .subscribe(user => {
         if (user.username != null) {
           this.username = user.username
-          console.log("chat: " + user.username)
           this.dbConnectService.getAllMsgsRepeat()
             .subscribe(data => {
               this.allMsgs = data.reverse()
