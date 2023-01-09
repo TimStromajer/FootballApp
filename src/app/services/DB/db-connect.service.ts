@@ -17,7 +17,7 @@ export class DbConnectService {
   }
 
   getAllMsgsRepeat(): Observable<any> {
-    return timer(0, 10 * 1000).pipe(mergeMap(_ => this.getAllMsgs()))
+    return timer(0, 5 * 1000).pipe(mergeMap(_ => this.getAllMsgs()))
   }
 
   postmsg(text: any, sender: any, receiver: any, time: any): Observable<any> {
