@@ -9,7 +9,7 @@ export let footballData =
 	"games": [{
 			"team1Score": "5",
 			"team2Score": "4",
-			"scoresTeam1": [2, 0, 3],
+			"scoresTeam1": [0, 2, 3],
 			"scoresTeam2": [1, 0, 3]
 		},
 		{
