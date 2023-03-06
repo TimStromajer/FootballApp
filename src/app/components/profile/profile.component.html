@@ -28,9 +28,9 @@
                                 <img *ngIf="goals >= 100" class="img-fluid" src="/assets/img/gold-cup.png" style="height: 9rem;">
                                 <h5>Goli</h5>
                                 <div>
-                                    Naslednji dosežek
-                                    {{goals}}/<span *ngIf="goals < 50">50</span>
-                                    <span *ngIf="goals >= 50 && goals < 100">100</span>
+                                    <span *ngIf="goals < 50">Naslednji dosežek {{goals}}/50</span>
+                                    <span *ngIf="goals >= 50 && goals < 100">Naslednji dosežek {{goals}}/100</span>
+                                    <span *ngIf="goals >= 100">Skupaj: {{goals}}</span>
                                 </div>
                             </div>
                             <div>
@@ -39,9 +39,9 @@
                                 <img *ngIf="matchesPlayed + friendlyMatchesPlayed >= 20" class="img-fluid" src="/assets/img/gold-cup.png" style="height: 9rem;">
                                 <h5>Odigrane tekme</h5>
                                 <div>
-                                    Naslednji dosežek
-                                    {{matchesPlayed + friendlyMatchesPlayed}}/<span *ngIf="matchesPlayed + friendlyMatchesPlayed < 5">5</span>
-                                    <span *ngIf="matchesPlayed + friendlyMatchesPlayed >= 5 && matchesPlayed + friendlyMatchesPlayed < 20">20</span>
+                                    <span *ngIf="matchesPlayed + friendlyMatchesPlayed < 5">Naslednji dosežek {{matchesPlayed + friendlyMatchesPlayed}}/5</span>
+                                    <span *ngIf="matchesPlayed + friendlyMatchesPlayed >= 5 && matchesPlayed + friendlyMatchesPlayed < 20">Naslednji dosežek {{matchesPlayed + friendlyMatchesPlayed}}/20</span>
+                                    <span *ngIf="matchesPlayed + friendlyMatchesPlayed >= 20">Skupaj: {{matchesPlayed + friendlyMatchesPlayed}}</span>
                                 </div>
                             </div>
                             <div>
@@ -50,9 +50,9 @@
                                 <img *ngIf="gamesWon >= 30" class="img-fluid" src="/assets/img/gold-cup.png" style="height: 9rem;">
                                 <h5>Zmagane igre</h5>
                                 <div>
-                                    Naslednji dosežek
-                                    {{gamesWon}}/<span *ngIf="gamesWon < 15">15</span>
-                                    <span *ngIf="gamesWon >= 15 && gamesWon < 30">30</span>
+                                    <span *ngIf="gamesWon < 15">Naslednji dosežek {{gamesWon}}/15</span>
+                                    <span *ngIf="gamesWon >= 15 && gamesWon < 30">Naslednji dosežek {{gamesWon}}/30</span>
+                                    <span *ngIf="gamesWon >= 30">Skupaj: {{gamesWon}}</span>
                                 </div>
                             </div>
                         </div>
