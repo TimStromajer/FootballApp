@@ -1,5 +1,37 @@
 export let footballData = 
 [{
+	"date": "20.3.2023",
+	"mode": "comp",
+	"team1": ["Tim", "MartinŽ", "Rok"],
+	"team2": ["Matic", "Gregor", "MartinN"],
+	"team1Score": "1",
+	"team2Score": "3",
+	"games": [{
+			"team1Score": "3",
+			"team2Score": "5",
+			"scoresTeam1": [0, 2, 1],
+			"scoresTeam2": [3, 0, 2]
+		},
+		{
+			"team1Score": "0",
+			"team2Score": "5",
+			"scoresTeam1": [0, 0, 0],
+			"scoresTeam2": [1, 1, 3]
+		},
+		{
+			"team1Score": "5",
+			"team2Score": "3",
+			"scoresTeam1": [2, 2, 1],
+			"scoresTeam2": [0, 1, 2]
+		},
+		{
+			"team1Score": "1",
+			"team2Score": "5",
+			"scoresTeam1": [0, 0, 1],
+			"scoresTeam2": [1, 1, 3]
+		}
+	]
+}, {
 	"date": "13.3.2023",
 	"mode": "comp",
 	"team1": ["MartinŽ", "MartinN", "Tim"],
