@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
-const uri = "mongodb+srv://slotim:geslo123@footballappcluster.fcikhci.mongodb.net/?retryWrites=true&w=majority";
+require('dotenv').config()
+const uri = process.env.MONGODB_URL
 const mongoClient = new MongoClient(uri);
 
 const handler = async (event) => {
